@@ -1,0 +1,27 @@
+<%@ include file="/WEB-INF/jspf/admin/films/add/style/film_form_style.jspf" %>
+
+<form action="/controller" method="post" style="text-align: center">
+    <input type="hidden" name="command" value="deleteFilm">
+    Choose film to delete:
+    <select name="filmIdGet">
+        <c:forEach items="${applicationScope.films}" var="film">
+            <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+                <option value="${film.id}">${film.name.rus}</option>
+            </c:if>
+            <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                <option value="${film.id}">${film.name.eng}</option>
+            </c:if>
+        </c:forEach>
+    </select>
+    <button name="action" value="getFilmToDelete" class="btn-primary">Choose</button>
+
+    <c:if test="${requestScope.film != null}">
+        <c:set var="film" value="${requestScope.film}"/>
+        <%@ include file="/WEB-INF/jspf/common/cinema/show_film.jspf" %>
+        <input type="hidden" name="filmIdDelete" value="${requestScope.film.id}">
+        <button name="action" value="deleteFilmConfirm">Delete</button>
+    </c:if>
+
+</form>
+
+<%@ include file="/WEB-INF/jspf/admin/films/add/script/film_form_script.jspf" %>

@@ -1,0 +1,36 @@
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+
+<c:if test="${sessionScope.user.language.toString().equals('RU')}">
+    <h6>${sessionScope.currentScheduleEntity.
+            film.name.rus}|<fmt:formatDate value="${sessionScope.currentScheduleEntity.timeStart}"
+                                           pattern="dd-MM-yyyy HH:mm:ss"/></h6>
+</c:if>
+<c:if test="${sessionScope.user.language.toString().equals('ENG') || sessionScope.user == null}">
+    <h6>${sessionScope.currentScheduleEntity.
+            film.name.rus}|<fmt:formatDate value="${sessionScope.currentScheduleEntity.timeStart}"
+                                           pattern="dd-MM-yyyy HH:mm:ss"/></h6>
+</c:if>
+
+
+<input type="hidden" name="places" value="${sessionScope.places}">
+<%--<c:set var="chairsInRow" value="20"/>--%>
+<%--<c:forEach items="${sessionScope.places}" var="place">--%>
+<%--    <c:if test="${chairsInRow == 15}">--%>
+<%--        <div></c:if>--%>
+
+<%--    <tag:chair free="${place.value}" num="${place.key}"/>--%>
+
+<%--    <c:if test="${chairsInRow == 1}">--%>
+<%--        </div>--%>
+<%--        <c:set var="chairsInRow" value="15"/>--%>
+<%--    </c:if>--%>
+<%--    <c:set var="chairsInRow" value="${chairsInRow-1}"/>--%>
+<%--</c:forEach>--%>
+
+<div style="margin-left: auto;
+    margin-right: auto;
+    width: 50em">
+    <c:forEach items="${sessionScope.places}" var="place">
+        <tag:chair free="${place.value}" num="${place.key}"/>
+    </c:forEach>
+</div>

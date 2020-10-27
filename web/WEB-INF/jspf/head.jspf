@@ -1,0 +1,34 @@
+<script>
+    function confirmBox() {
+        if (confirm("Are you sure?")) {
+        } else {
+            return false;
+        }
+    }
+</script>
+
+<head>
+
+    <title>
+        ${title}
+    </title>
+
+    <%--	<meta charset="utf-8">--%>
+    <%--	<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+    <%--===========================================================================
+    Bind CSS document.
+    ===========================================================================--%>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css">
+    <%--===========================================================================
+        Define the names Path
+        ===========================================================================--%>
+
+
+    <%--===========================================================================
+        If you define http-equiv attribute, set the content type and the charset the same
+        as you set them in a page directive.
+        ===========================================================================--%>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>

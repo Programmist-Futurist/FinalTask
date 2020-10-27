@@ -1,0 +1,28 @@
+<div class="bs-example">
+    <dl class="row">
+        <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+            <%--        <h2 class="mb-3">${requestScope.film.name.ru}</h2>--%>
+        <dl class="row">
+            <dl class="row">
+                <dd class="col-sm-3">
+                    <img src="${film.image.path}" width="100" height="111" alt="Film">
+                </dd>
+                <dt class="col-sm-9">${film.name.rus}</dt>
+                <br/>
+                <dd class="col-sm-9">${film.description.rus}</dd>
+            </dl>
+        </dl>
+        </c:if>
+        <c:if test="${sessionScope.user.language.toString().equals('ENG') || sessionScope.user == null}">
+            <%--        <h2 class="mb-3">${requestScope.film.name.ru}</h2>--%>
+        <dl class="row">
+            <dl class="row">
+                <dd class="col-sm-3">
+                    <img src="${film.image.path}" width="100" height="111" alt="Film">
+                </dd>
+                <dt class="col-sm-9">${film.name.eng}</dt>
+                <br/>
+                <dd class="col-sm-9">${film.description.eng}</dd>
+            </dl>
+        </dl>
+        </c:if>

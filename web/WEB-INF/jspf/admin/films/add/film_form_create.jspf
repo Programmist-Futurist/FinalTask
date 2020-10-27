@@ -1,0 +1,24 @@
+<form>
+    <input type="hidden" name="command" value="createFilm" enctype="multipart/form-data"/>
+
+    <div>
+        <div>
+            <a>Name of film</a>
+        </div>
+        <input type="text" id="filmNameRu" name="filmNameRu" placeholder="Название фильма">
+        <input type="text" id="filmNameEn" name="filmNameEn" placeholder="Film name">
+    </div>
+    <div>
+        <div>
+            <a>Description of film</a>
+        </div>
+        <textarea id="filmDescriptionRu" name="filmDescriptionRu" placeholder="Описание фильма"></textarea>
+        <textarea id="filmDescriptionEn" name="filmDescriptionEng" placeholder="Film description"></textarea>
+    </div>
+<%--    <label for="image_uploads">Choose images to upload (PNG, JPG)</label>--%>
+<%--    <input class="custom-file" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">--%>
+<%--    <div class="preview">--%>
+<%--        <p>No files currently selected for upload</p>--%>
+<%--    </div>--%>
+    <button name="action" value="createFilmConfirm">Create</button>
+</form>

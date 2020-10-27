@@ -1,0 +1,33 @@
+<%@ include file="/WEB-INF/jspf/admin/films/add/style/film_form_style.jspf" %>
+
+<form action="/controller" method="post" style="text-align: center">
+    <input type="hidden" name="command" value="editFilm">
+    Choose film to edit:
+    <select name="filmIdGet">
+        <c:forEach items="${applicationScope.films}" var="film">
+            <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+                <option value="${film.id}">${film.name.rus}</option>
+            </c:if>
+            <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                <option value="${film.id}">${film.name.eng}</option>
+            </c:if>
+        </c:forEach>
+    </select>
+    <button name="action" value="getFilmToEdit" class="btn-primary">Choose</button>
+
+    <c:if test="${requestScope.film != null}">
+        <form action="/controller" method="post">
+            <input type="hidden" name="command" value="editFilm">
+            <%@ include file="/WEB-INF/jspf/admin/films/add/film_form_update.jspf" %>
+            <input type="hidden" name="filmIdEdit" value="${requestScope.film.id}">
+            <button name="action" value="editFilmConfirm">Update</button>
+        </form>
+    </c:if>
+
+
+</form>
+<%@ include file="/WEB-INF/jspf/admin/films/add/script/film_form_script.jspf" %>
+
+
+
+

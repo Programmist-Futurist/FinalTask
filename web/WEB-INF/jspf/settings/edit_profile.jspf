@@ -1,0 +1,33 @@
+<div class="text-input">
+    <p>Login</p>
+    <input type="text" name="oldLogin"
+           placeholder="Old login"/>
+    <input type="text" name="newLogin"
+           placeholder="New login"/>
+    <hr/>
+
+    <p>Password</p>
+    <input type="password" name="oldPassword"
+           placeholder="Old password"/>
+    <input type="password" name="newPassword"
+           placeholder="New password"/>
+    <hr/>
+
+    <p>Name</p>
+    <textarea type="text"
+              name="userName">${sessionScope.user.name}</textarea>
+    <hr/>
+
+    <p>Email</p>
+    <textarea type="text" name="userEmail">${sessionScope.user.email}</textarea>
+    <hr/>
+
+    <p>Phone</p>
+    <textarea type="text" name="userPhone">${sessionScope.user.phone}</textarea>
+    <hr/>
+
+    <div class="window-button">
+        <button name="action" value="editProfileConfirm" class="btn-primary">Edit</button>
+        <br/>
+    </div>
+</div>

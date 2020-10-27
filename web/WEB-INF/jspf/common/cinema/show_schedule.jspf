@@ -1,0 +1,37 @@
+<%----%>
+
+<c:if test="${sessionScope.user.language.toString().equals('RU')}">
+    <h2>${requestScope.film.name.rus}</h2>
+</c:if>
+<c:if test="${sessionScope.user.language.toString().equals('ENG') || sessionScope.user == null}">
+    <h2>${requestScope.film.name.eng}</h2>
+</c:if>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Hall</th>
+        <th scope="col">Button</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${requestScope.filmSchedules}" var="scheduleEntity">
+        <form action="/controller" method="get">
+            <input type="hidden" name="command" value="lookHall">
+            <input type="hidden" name="scheduleId" value="${scheduleEntity.id}">
+            <tr>
+                <td><fmt:formatDate value="${scheduleEntity.timeStart}" pattern="dd-MM-yyyy HH:mm:ss"/></td>
+                <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+                    <td>${scheduleEntity.hall.name.rus}</td>
+                </c:if>
+                <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                    <td>${scheduleEntity.hall.name.eng}</td>
+                </c:if>
+                <td>
+                    <button name="action" value="getFilm" class="btn-primary">Look hall</button>
+                </td>
+            </tr>
+        </form>
+    </c:forEach>
+    </tbody>
+</table>

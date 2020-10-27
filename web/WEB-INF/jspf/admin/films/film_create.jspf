@@ -1,0 +1,4 @@
+<%@ include file="/WEB-INF/jspf/admin/films/add/style/film_form_style.jspf" %>
+<%@ include file="/WEB-INF/jspf/admin/films/add/film_form_create.jspf" %>
+<%@ include file="/WEB-INF/jspf/admin/films/add/script/film_form_script.jspf" %>
+

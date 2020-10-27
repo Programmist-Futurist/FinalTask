@@ -1,0 +1,77 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+    .bs-example {
+        margin: 20px;
+    }
+</style>
+
+<jsp:useBean id="teacher" class="ua.nure.levchenko.SummaryTask.model.entity.db.User" scope="session"/>
+
+<div class="bs-example">
+
+    <ul class="nav nav-tabs mt-5">
+        <%--===========================================================================
+                  This way we define the common MENU for all.
+                  ===========================================================================--%>
+        <li class="nav-item">
+            <a href="controller?command=cinema" class="nav-link active">Cinema</a>
+        </li>
+
+        <%--===========================================================================
+             This way we define the ADMIN MENU.
+          ===========================================================================--%>
+        <c:if test="${sessionScope.user.role.toString().equals('ADMIN')}">
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Films Manage</a>
+                <div class="dropdown-menu dropdown-menu">
+                    <a href="controller?command=redirectFilms&action=createFilm" class="dropdown-item">Create film</a>
+                    <a href="controller?command=redirectFilms&action=editFilm" class="dropdown-item">Edit film</a>
+                    <a href="controller?command=redirectFilms&action=deleteFilm" class="dropdown-item">Delete film</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="controller?command=scheduleManage" class="nav-link active">Manage Schedule</a>
+            </li>
+        </c:if>
+
+        <%--===========================================================================
+                      This way we define the STANDART user MENU.
+          ===========================================================================--%>
+        <c:if test="${sessionScope.user != null}">
+            <li class="nav-item dropdown ml-auto">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="controller?command=profile" class="dropdown-item"><fmt:message
+                            key="header_jspf.text.profile"/></a>
+
+                    <a href="controller?command=editProfile" class="dropdown-item">Edit info</a>
+
+                    <a href="controller?command=languageSettings" class="dropdown-item">Language</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="controller?command=logout" class="dropdown-item">Log out</a>
+                </div>
+            </li>
+        </c:if>
+
+
+        <c:if test="${sessionScope.user == null}">
+            <li class="nav-item ml-auto">
+                <a href="controller?command=login" class="nav-link active"><fmt:message
+                        key="login_jsp.btn.login"/></a>
+            </li>
+        </c:if>
+
+    </ul>
+</div>
