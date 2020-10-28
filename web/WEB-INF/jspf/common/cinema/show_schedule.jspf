@@ -10,25 +10,31 @@
     <thead>
     <tr>
         <th scope="col">Date</th>
+        <th scope="col">Time</th>
         <th scope="col">Hall</th>
+        <th scope="col">Free places</th>
         <th scope="col">Button</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${requestScope.filmSchedules}" var="scheduleEntity">
+    <c:forEach items="${sessionScope.filmSchedules}" var="scheduleEntity">
         <form action="/controller" method="get">
             <input type="hidden" name="command" value="lookHall">
             <input type="hidden" name="scheduleId" value="${scheduleEntity.id}">
             <tr>
-                <td><fmt:formatDate value="${scheduleEntity.timeStart}" pattern="dd-MM-yyyy HH:mm:ss"/></td>
+                <td><fmt:formatDate value="${scheduleEntity.timeStart}" pattern="dd-MM-yyyy"/></td>
+                <td><fmt:formatDate value="${scheduleEntity.timeStart}" pattern="HH:mm"/></td>
                 <c:if test="${sessionScope.user.language.toString().equals('RU')}">
                     <td>${scheduleEntity.hall.name.rus}</td>
                 </c:if>
-                <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                <c:if test="${sessionScope.user.language.toString().equals('ENG') || sessionScope.user == null}">
                     <td>${scheduleEntity.hall.name.eng}</td>
                 </c:if>
+                <td>${sessionScope.filmFreePlaces.get(scheduleEntity.id)}</td>
                 <td>
-                    <button name="action" value="getFilm" class="btn-primary">Look hall</button>
+                    <button name="action" value="getFilm" class="btn-primary">
+                        <fmt:message key="show_schedule.text.go_to_order"/>
+                    </button>
                 </td>
             </tr>
         </form>

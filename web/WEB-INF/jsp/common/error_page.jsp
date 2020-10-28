@@ -20,7 +20,7 @@
             <%-- CONTENT --%>
 
             <h2 class="error">
-                Following error occured:
+                <fmt:message key="error_page.text.following_error_occurred"/>
             </h2>
 
             <%-- this way we obtain an information about an exception (if it has been occurred) --%>
@@ -32,27 +32,6 @@
             <c:if test="${not empty requestScope.errorMessage}">
             <h3 style="color: red">${requestScope.errorMessage}</h3>
             </c:if>
-
-            <%--				<c:if test="${not empty code}">--%>
-            <%--					<h3>Error code: ${code}</h3>--%>
-            <%--				</c:if>			--%>
-            <%--				--%>
-            <%--				<c:if test="${not empty message}">--%>
-            <%--					<h3>${message}</h3>--%>
-            <%--				</c:if>--%>
-            <%--				--%>
-            <%--				<c:if test="${not empty exception}">--%>
-            <%--					<% exception.printStackTrace(new PrintWriter(out)); %>--%>
-            <%--				</c:if>--%>
-            <%--				--%>
-            <%--				&lt;%&ndash; if we get this page using forward &ndash;%&gt;--%>
-            <%--				<c:if test="${not empty requestScope.errorMessage}">--%>
-            <%--					<h3>${requestScope.errorMessage}</h3>--%>
-            <%--				</c:if>--%>
-
-            <%--			&lt;%&ndash; CONTENT &ndash;%&gt;--%>
-            <%--			</td>--%>
-            <%--		</tr>--%>
 
             <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </table>

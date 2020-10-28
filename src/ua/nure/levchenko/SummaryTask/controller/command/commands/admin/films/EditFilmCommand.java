@@ -13,23 +13,47 @@ import ua.nure.levchenko.SummaryTask.model.entity.db.Dictionary;
 import ua.nure.levchenko.SummaryTask.model.entity.db.Film;
 import ua.nure.levchenko.SummaryTask.model.entity.db.User;
 import ua.nure.levchenko.SummaryTask.model.services.FilmService;
+import ua.nure.levchenko.SummaryTask.model.utils.language.LanguageDefiner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.ResourceBundle;
 
+
+/**
+ * Command to updated film entity in db
+ * (For admin only)
+ *
+ * @author K.Levchenko
+ */
 public class EditFilmCommand implements Command {
     private static final Logger LOG = Logger.getLogger(EditFilmCommand.class);
 
+
+    /**
+     * This method validates all fields before
+     * creating film in DB, and also updates it if
+     * everything is ok, and returns error message if
+     * smth goes wrong
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");
 
         // getting session
         HttpSession session = request.getSession();
-        // getting user from session
+        //getting user from session
         User user = (User) session.getAttribute(Attributes.USER);
+        // define currentLang
+        LanguageDefiner languageDefiner = new LanguageDefiner();
+        ResourceBundle resourceBundle = languageDefiner.getBundle(user);
 
         // getting action parameter from the request
         String action = request.getParameter(Parameters.ACTION);
@@ -66,12 +90,13 @@ public class EditFilmCommand implements Command {
                 film = updatingFieldsForFilmObject(film, nameRu, nameEng, descriptionRu, descriptionEng);
                 // validating film
                 FilmWebValidator filmWebValidator = new FilmWebValidator();
-                boolean isFilmValid = filmWebValidator.validateFilmOnUpdate(film, request);
+                boolean isFilmValid = filmWebValidator.validateFilmOnUpdate(film, request, resourceBundle);
                 if (isFilmValid) {
                     // update film in DB
                     filmService.update(film);
                     // setting request attributes
-                    request.setAttribute(Attributes.INFO_MESSAGE, "Film successfully updated.");
+                    request.setAttribute(Attributes.INFO_MESSAGE,
+                            resourceBundle.getString("create_film_command.film_updated"));
                     // setting appScope attribute "films"
                     List<Film> films = filmService.getAllFull();
                     // setting films to application scope
@@ -84,7 +109,7 @@ public class EditFilmCommand implements Command {
             }
         } catch (ServiceException e) {
             LOG.error("Cannot update film in DB");
-            throw new AppException("Unknown internal error occurred.");
+            throw new AppException(resourceBundle.getString("unknown_internal_error"), e);
         }
         request.setAttribute(Attributes.FILM_ACTIONS, 2);
         LOG.debug("Command finishes");

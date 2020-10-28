@@ -2,7 +2,8 @@
 
 <form action="/controller" method="post" style="text-align: center">
     <input type="hidden" name="command" value="editFilm">
-    Choose film to edit:
+    <fmt:message
+            key="film_edit.text.choose_film_to_edit"/>
     <select name="filmIdGet">
         <c:forEach items="${applicationScope.films}" var="film">
             <c:if test="${sessionScope.user.language.toString().equals('RU')}">
@@ -13,18 +14,18 @@
             </c:if>
         </c:forEach>
     </select>
-    <button name="action" value="getFilmToEdit" class="btn-primary">Choose</button>
+    <button name="action" value="getFilmToEdit" class="btn-primary"><fmt:message
+            key="film_edit.button.choose"/></button>
 
     <c:if test="${requestScope.film != null}">
         <form action="/controller" method="post">
             <input type="hidden" name="command" value="editFilm">
             <%@ include file="/WEB-INF/jspf/admin/films/add/film_form_update.jspf" %>
             <input type="hidden" name="filmIdEdit" value="${requestScope.film.id}">
-            <button name="action" value="editFilmConfirm">Update</button>
+            <button name="action" value="editFilmConfirm"><fmt:message
+                    key="film_edit.text.update"/></button>
         </form>
     </c:if>
-
-
 </form>
 <%@ include file="/WEB-INF/jspf/admin/films/add/script/film_form_script.jspf" %>
 

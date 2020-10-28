@@ -3,22 +3,20 @@
 
     <div>
         <div>
-            <a>Name of film</a>
+            <a><fmt:message key="film_form_update.name_of_film_updated"/></a>
         </div>
-        <input type="text" id="filmNameRu" name="filmNameRu" placeholder="Название фильма">
+        <input type="text" id="filmNameRu" name="filmNameRu" placeholder="<fmt:message
+                    key="film_form_update.name_of_film_updated_placeholder_ru"/>">
         <input type="text" id="filmNameEn" name="filmNameEn" placeholder="Film name">
     </div>
     <div>
         <div>
-            <a>Description of film</a>
+            <a><fmt:message
+                    key="film_form_update.description_of_film_updated"/></a>
         </div>
-        <textarea id="filmDescriptionRu" name="filmDescriptionRu" placeholder="Описание фильма"></textarea>
+        <textarea id="filmDescriptionRu" name="filmDescriptionRu" placeholder="<fmt:message
+                    key="film_form_update.description_of_film_updated_placeholder_ru"/>"></textarea>
         <textarea id="filmDescriptionEn" name="filmDescriptionEng" placeholder="Film description"></textarea>
     </div>
-<%--    <label for="image_uploads">Choose images to upload (PNG, JPG)</label>--%>
-<%--    <input class="custom-file" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">--%>
-<%--    <div class="preview">--%>
-<%--        <p>No files currently selected for upload</p>--%>
-<%--    </div>--%>
     <button name="action" value="createFilmConfirm">Create</button>
 </form>

@@ -3,7 +3,7 @@
 
 <html>
 
-<c:set var="title" value="Settings" scope="page"/>
+<c:set var="title" value="Profile" scope="page"/>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 
 <body>
@@ -13,7 +13,7 @@
 
 <form action="/controller" method="post">
     <input type="hidden" name="command" value="profile"/>
-    <h6 class="display-4" style="text-align: center; color: blue">Profile page</h6>
+    <h6 class="display-4" style="text-align: center; color: blue"><fmt:message key="profile.profile_title_text"/></h6>
 
     <div class="content" style="border: #0f0f0f 1px;
 text-align: center;
@@ -35,15 +35,13 @@ padding: 2px; ">
                     </ul>
                 </c:if>
             </tr>
-            <br/>
-            <tr>
-                <button name="action" value="editProfile" class="btn-primary"
-                        style="width:100px;height:40px">Edit</button>
-            </tr>
             <br/><br/>
         </table>
     </div>
 </form>
+<hr/>
+<%@ include file="/WEB-INF/jspf/user/tickets.jspf" %>
+<br/><br/><br/>
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>

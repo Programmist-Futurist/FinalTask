@@ -44,7 +44,7 @@
         <init-param>
             <param-name>admin</param-name>
             <param-value>
-                profile createFilm editFilm deleteFilm redirectFilms
+                createFilm editFilm deleteFilm redirectFilms
             </param-value>
         </init-param>
         <init-param>
@@ -56,12 +56,12 @@
         <init-param>
             <param-name>common</param-name>
             <param-value>
-                profile editProfile makeOrder logout setLanguage languageSettings
+                profile editProfile makeOrder logout setLanguage languageSettings ticketsManage
             </param-value>
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login signUp cinema bookPlace lookHall lookSchedule sort
+            <param-value>login signUp cinema bookPlace lookHall lookSchedule sortSchedule sortFilms
             </param-value>
         </init-param>
     </filter>

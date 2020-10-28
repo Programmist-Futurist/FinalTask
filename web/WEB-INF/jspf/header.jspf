@@ -24,7 +24,8 @@
                   This way we define the common MENU for all.
                   ===========================================================================--%>
         <li class="nav-item">
-            <a href="controller?command=cinema" class="nav-link active">Cinema</a>
+            <a href="controller?command=cinema" class="nav-link active">
+                <fmt:message key="header.cinema"/></a>
         </li>
 
         <%--===========================================================================
@@ -33,16 +34,23 @@
         <c:if test="${sessionScope.user.role.toString().equals('ADMIN')}">
 
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Films Manage</a>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <fmt:message key="header.manage_films"/></a>
                 <div class="dropdown-menu dropdown-menu">
-                    <a href="controller?command=redirectFilms&action=createFilm" class="dropdown-item">Create film</a>
-                    <a href="controller?command=redirectFilms&action=editFilm" class="dropdown-item">Edit film</a>
-                    <a href="controller?command=redirectFilms&action=deleteFilm" class="dropdown-item">Delete film</a>
+                    <a href="controller?command=redirectFilms&action=createFilm" class="dropdown-item">
+                        <fmt:message key="header.create_film"/></a>
+                    <a href="controller?command=redirectFilms&action=editFilm" class="dropdown-item">
+                        <fmt:message key="header.edit_film"/>
+                    </a>
+                    <a href="controller?command=redirectFilms&action=deleteFilm" class="dropdown-item">
+                        <fmt:message key="header.delete_film"/>
+                    </a>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a href="controller?command=scheduleManage" class="nav-link active">Manage Schedule</a>
+                <a href="controller?command=scheduleManage" class="nav-link active">
+                    <fmt:message key="header.manage_schedule"/></a>
             </li>
         </c:if>
 
@@ -51,16 +59,21 @@
           ===========================================================================--%>
         <c:if test="${sessionScope.user != null}">
             <li class="nav-item dropdown ml-auto">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <fmt:message key="header.account"/>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="controller?command=profile" class="dropdown-item"><fmt:message
                             key="header_jspf.text.profile"/></a>
 
-                    <a href="controller?command=editProfile" class="dropdown-item">Edit info</a>
+                    <a href="controller?command=editProfile" class="dropdown-item"><fmt:message
+                            key="header.edit_info"/></a>
 
-                    <a href="controller?command=languageSettings" class="dropdown-item">Language</a>
+                    <a href="controller?command=languageSettings" class="dropdown-item"><fmt:message
+                            key="header.language"/></a>
                     <div class="dropdown-divider"></div>
-                    <a href="controller?command=logout" class="dropdown-item">Log out</a>
+                    <a href="controller?command=logout" class="dropdown-item">
+                        <fmt:message key="header.log_out"/></a>
                 </div>
             </li>
         </c:if>

@@ -9,6 +9,7 @@ import ua.nure.levchenko.SummaryTask.model.services.DictionaryService;
 import ua.nure.levchenko.SummaryTask.model.validators.FilmValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ResourceBundle;
 
 public class FilmWebValidator {
     private static final Logger LOG = Logger.getLogger(FilmWebValidator.class);
@@ -27,16 +28,16 @@ public class FilmWebValidator {
      * @return
      * @throws ServiceException if service classes throw such
      */
-    public boolean validateFilmOnUpdate(Film film, HttpServletRequest request) throws ServiceException {
+    public boolean validateFilmOnUpdate(Film film, HttpServletRequest request, ResourceBundle resourceBundle) throws ServiceException {
         DictionaryService dictionaryService = new DictionaryService();
         try {
             LOG.trace("Validation starts");
             // validates description
             Dictionary dictionaryDescription = film.getDescription();
-            boolean isDescriptionValid = validateFilmDescription(dictionaryDescription, request);
+            boolean isDescriptionValid = validateFilmDescription(dictionaryDescription, request, resourceBundle);
             // validates name
             Dictionary dictionaryName = film.getName();
-            boolean isNameValid = validateFilmName(dictionaryName, request);
+            boolean isNameValid = validateFilmName(dictionaryName, request, resourceBundle);
 //            // validates image path
 //            boolean isImagePathValid = validateFilmImage(film.getImage().toString(), request);
 
@@ -60,16 +61,16 @@ public class FilmWebValidator {
      * @return
      * @throws ServiceException if service classes throw such
      */
-    public boolean validateFilmOnCreate(Film film, HttpServletRequest request) throws ServiceException {
+    public boolean validateFilmOnCreate(Film film, HttpServletRequest request, ResourceBundle resourceBundle) throws ServiceException {
         DictionaryService dictionaryService = new DictionaryService();
         try {
             LOG.trace("Validation starts");
             // validates description
             Dictionary dictionaryDescription = film.getDescription();
-            boolean isDescriptionValid = validateFilmDescription(dictionaryDescription, request);
+            boolean isDescriptionValid = validateFilmDescription(dictionaryDescription, request, resourceBundle);
             // validates name
             Dictionary dictionaryName = film.getName();
-            boolean isNameValid = validateFilmName(dictionaryName, request);
+            boolean isNameValid = validateFilmName(dictionaryName, request, resourceBundle);
 //            // validates image path
 //            boolean isImagePathValid = validateFilmImage(film.getImage().toString(), request);
 
@@ -90,7 +91,7 @@ public class FilmWebValidator {
      * @param request
      * @return
      */
-    private boolean validateFilmName(Dictionary name, HttpServletRequest request) {
+    private boolean validateFilmName(Dictionary name, HttpServletRequest request, ResourceBundle resourceBundle) {
         if (name != null) {
             String rusName = name.getRus();
             String engName = name.getEng();
@@ -101,12 +102,12 @@ public class FilmWebValidator {
                 if (isValid) {
                     return true;
                 } else {
-                    request.setAttribute(Attributes.ERROR_MESSAGE, "Name did not pass validation");
+                    request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.name_validation_error"));
                     return false;
                 }
             }
         }
-        request.setAttribute(Attributes.ERROR_MESSAGE, "Name field is required");
+        request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.empty_name"));
         return false;
     }
 
@@ -121,7 +122,7 @@ public class FilmWebValidator {
      * @param request
      * @return
      */
-    private boolean validateFilmDescription(Dictionary description, HttpServletRequest request) {
+    private boolean validateFilmDescription(Dictionary description, HttpServletRequest request, ResourceBundle resourceBundle) {
         System.out.println(description);
         if (description != null) {
             String rusDescription = description.getRus();
@@ -133,15 +134,16 @@ public class FilmWebValidator {
                 if (isValid) {
                     return true;
                 } else {
-                    request.setAttribute(Attributes.ERROR_MESSAGE, "Description did not pass validation");
+                    request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.description_validation_error"));
                     return false;
                 }
             } else {
-                request.setAttribute(Attributes.ERROR_MESSAGE, "Description field is required");
+                request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.empty_description"))
+                ;
                 return false;
             }
         }
-        request.setAttribute(Attributes.ERROR_MESSAGE, "Description field is required");
+        request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.empty_description"));
         return false;
     }
 
@@ -157,11 +159,11 @@ public class FilmWebValidator {
      * @param request
      * @return
      */
-    private boolean validateFilmImage(String imagePath, HttpServletRequest request) {
+    private boolean validateFilmImage(String imagePath, HttpServletRequest request, ResourceBundle resourceBundle) {
         if (imagePath != null && !imagePath.isEmpty()) {
             return true;
         } else {
-            request.setAttribute(Attributes.ERROR_MESSAGE, "Description field is required");
+            request.setAttribute(Attributes.ERROR_MESSAGE, resourceBundle.getString("web_film_validator.empty_image"));
             return false;
         }
     }

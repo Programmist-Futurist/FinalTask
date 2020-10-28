@@ -1,33 +1,39 @@
 <div class="text-input">
-    <p>Login</p>
+    <p><fmt:message
+            key="edit_profile.text.login"/></p>
     <input type="text" name="oldLogin"
-           placeholder="Old login"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.old_login">"/>
     <input type="text" name="newLogin"
-           placeholder="New login"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.new_login">"/>
     <hr/>
 
-    <p>Password</p>
+    <p><fmt:message
+            key="edit_profile.text.password"/></p>
     <input type="password" name="oldPassword"
-           placeholder="Old password"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.old_password">"/>
     <input type="password" name="newPassword"
-           placeholder="New password"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.new_password">"/>
     <hr/>
 
-    <p>Name</p>
+    <p><fmt:message
+            key="edit_profile.text.name"/></p>
     <textarea type="text"
               name="userName">${sessionScope.user.name}</textarea>
     <hr/>
 
-    <p>Email</p>
+    <p><fmt:message
+            key="edit_profile.text.email"/></p>
     <textarea type="text" name="userEmail">${sessionScope.user.email}</textarea>
     <hr/>
 
-    <p>Phone</p>
+    <p><fmt:message
+            key="edit_profile.text.phone"/></p>
     <textarea type="text" name="userPhone">${sessionScope.user.phone}</textarea>
     <hr/>
 
     <div class="window-button">
-        <button name="action" value="editProfileConfirm" class="btn-primary">Edit</button>
+        <button name="action" value="editProfileConfirm" class="btn-primary"><fmt:message
+                key="edit_profile.button.edit"/></button>
         <br/>
     </div>
 </div>

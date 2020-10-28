@@ -27,11 +27,19 @@ import java.util.ResourceBundle;
  * @author K.Levchenko
  */
 public class SignUpCommand implements Command {
-
-    private static final long serialVersionUID = -8506576564315805157L;
-
     private static final Logger LOG = Logger.getLogger(SignUpCommand.class);
 
+    /**
+     * Command for sign up new User.
+     * All fields passed deep validation,
+     * if smth went wrong, user will see error message
+     * above the form
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");
@@ -69,7 +77,7 @@ public class SignUpCommand implements Command {
                         userPhone, true, Language.ENG);
                 // validate user on create
                 UserWebValidator userWebValidator = new UserWebValidator();
-                boolean isUserValid = userWebValidator.validateUserOnCreate(user, request);
+                boolean isUserValid = userWebValidator.validateUserOnCreate(user, request, resourceBundle);
                 if (isUserValid) {
                     // creating user in DB
                     UserService userService = new UserService();
@@ -81,7 +89,8 @@ public class SignUpCommand implements Command {
                         // go to profile page
                         forward = Path.PROFILE_PAGE;
                     } else {
-                        request.setAttribute(Attributes.ERROR_MESSAGE, "User with such login has already exist");
+                        request.setAttribute(Attributes.ERROR_MESSAGE,
+                                resourceBundle.getString("sign_up_command.user_with_such_login_has_already_exist"));
                     }
                 }
             }

@@ -9,6 +9,8 @@ public class Attributes {
 
     // films manage/films redirect
     public static final String FILM_ACTIONS = "filmAction";
+    public static final String FILM_SCHEDULES = "filmSchedules";
+    public static final String FILM_SCHEDULE_FREE_PLACES = "filmFreePlaces";
     public static final String FILM = "film";
     public static final String FILMS = "films";
 
@@ -17,12 +19,15 @@ public class Attributes {
     public static final String HALL = "hall";
 
     // cinema.jsp
-    public static final String FILM_SCHEDULES = "filmSchedules";
-    public static final String ALL_SCHEDULES = "allSchedules";
-    public static final String CURRENT_HALL = "currentHall";
     public static final String CURRENT_SCHEDULE_ENTITY = "currentScheduleEntity";
     public static final String PLACES = "places";
     public static final String PLACES_TO_ORDER = "placesToOrder";
     public static final String HALL_RESERVED_PLACES = "hallReservedPlaces";
+
+    // profile.jsp
+    public static final String USER_TICKETS = "userTickets";
+
+
+
 
 }

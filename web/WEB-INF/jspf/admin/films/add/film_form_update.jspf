@@ -1,25 +1,19 @@
-<%--    <input type="hidden" name="command" value="editFilm"/>--%>
-
+<%----%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<div>
+    <img src="${requestScope.film.image.path}" width="100" height="111" alt="Film">
+</div>
+<div>
     <div>
-        <img src="${requestScope.film.image.path}" width="100" height="111" alt="Film">
+        <a></a>
     </div>
+    <textarea id="filmNameRu" name="filmNameRu">${requestScope.film.name.rus}</textarea>
+    <textarea id="filmNameEn" name="filmNameEn">${requestScope.film.name.eng}</textarea>
+</div>
+<div>
     <div>
-        <div>
-            <a>Name of film</a>
-        </div>
-        <textarea id="filmNameRu" name="filmNameRu">${requestScope.film.name.rus}</textarea>
-        <textarea id="filmNameEn" name="filmNameEn">${requestScope.film.name.eng}</textarea>
+        <a>Description of film</a>
     </div>
-    <div>
-        <div>
-            <a>Description of film</a>
-        </div>
-        <textarea id="filmDescriptionRu" name="filmDescriptionRu">${requestScope.film.description.rus}</textarea>
-        <textarea id="filmDescriptionEn" name="filmDescriptionEng">${requestScope.film.description.eng}</textarea>
-    </div>
-    <%--    <label for="image_uploads">Choose images to upload (PNG, JPG)</label>--%>
-    <%--    <input class="custom-file" type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png">--%>
-    <%--    <div class="preview">--%>
-    <%--        <p>No files currently selected for upload</p>--%>
-    <%--    </div>--%>
-<%--    <button name="confirm" value="editFilmConfirm">Update</button>--%>
+    <textarea id="filmDescriptionRu" name="filmDescriptionRu">${requestScope.film.description.rus}</textarea>
+    <textarea id="filmDescriptionEn" name="filmDescriptionEng">${requestScope.film.description.eng}</textarea>
+</div>

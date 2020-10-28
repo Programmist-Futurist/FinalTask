@@ -1,0 +1,22 @@
+<form action="/controller" method="get">
+    <input type="hidden" name="command" value="sort">
+    <div>
+        <a><fmt:message key="sort_schedule.text.sort_by_time"/></a>
+        <select name="sortTimeType">
+            <option value="time min-max">nearest-furthest</option>
+            <option value="time max-min">furthest-nearest</option>
+        </select>
+        <button name="action" value="sortScheduleTime"><fmt:message key="sort_films.button.sort"/></button>
+    </div>
+    <div>
+        <a>
+            <fmt:message key="sort_schedule.text.sort_by_places"/></a>
+        <select name="sortFreePlacesType">
+            <option value="places min-max">min-max</option>
+            <option value="places max-min">max-min</option>
+        </select>
+        <button name="action" value="sortSchedulePlaces"><fmt:message key="sort_films.button.sort"/></button>
+    </div>
+    <br/>
+
+</form>

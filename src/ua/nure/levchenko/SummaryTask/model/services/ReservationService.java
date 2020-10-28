@@ -228,6 +228,26 @@ public class ReservationService implements Service<Reservation, Integer> {
         }
     }
 
+    /**
+     * Reads all Reservation entities from DataBase.
+     * Method have the same main function as in the Dao,
+     * but it is available to be expanded with additional functionality.
+     *
+     * @throws ServiceException
+     */
+    public List<Reservation> getAllBySchedule(int scheduleId) throws ServiceException {
+        LOG.debug("Service getAllFullBySchedule starts");
+        try {
+            ReservationDao reservationDao = new ReservationDao();
+            return reservationDao.getAllBySchedule(scheduleId);
+        } catch (DBException e) {
+            LOG.error(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+            throw new DBException(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+        } finally {
+            LOG.debug("Service getAllFullBySchedule ends");
+        }
+    }
+
 
     /**
      * Reads all Reservation entities from DataBase

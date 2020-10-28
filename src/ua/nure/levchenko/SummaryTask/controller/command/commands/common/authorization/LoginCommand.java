@@ -10,11 +10,14 @@ import ua.nure.levchenko.SummaryTask.exception.AppException;
 import ua.nure.levchenko.SummaryTask.exception.ServiceException;
 import ua.nure.levchenko.SummaryTask.exception.constants.Messages;
 import ua.nure.levchenko.SummaryTask.model.db.dao.UserDao;
+import ua.nure.levchenko.SummaryTask.model.entity.db.Reservation;
 import ua.nure.levchenko.SummaryTask.model.entity.db.User;
+import ua.nure.levchenko.SummaryTask.model.services.ReservationService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -26,6 +29,18 @@ import java.util.ResourceBundle;
 public class LoginCommand implements Command {
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
 
+    /**
+     * Main method of this command,
+     * it is validates all input fields
+     * if everything is ok, we will go to the next page.
+     * If not ok, we will stay on login page and will
+     * received error message above the form
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)
             throws AppException {
@@ -56,6 +71,14 @@ public class LoginCommand implements Command {
                     User user = userDao.read(login, password);
                     if (user != null) {
                         session.setAttribute(Attributes.USER, user);
+
+                        // getting user orders
+                        ReservationService reservationService = new ReservationService();
+                        int userId = user.getId();
+                        List<Reservation> reservations = reservationService.getAllFullByUser(userId);
+                        // setting attribute filmsSchedule
+                        request.setAttribute(Attributes.USER_TICKETS, reservations);
+
                         forward = Path.PROFILE_PAGE;
                     } else {
                         request.setAttribute(Attributes.ERROR_MESSAGE,

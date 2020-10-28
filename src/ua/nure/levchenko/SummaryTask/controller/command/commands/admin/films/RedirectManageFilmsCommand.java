@@ -15,9 +15,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+
+/**
+ * Command to redirect between create/update/delete
+ * commands in UI
+ * (For admin only)
+ *
+ * @author K.Levchenko
+ */
 public class RedirectManageFilmsCommand implements Command {
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
 
+
+    /**
+     * Method, redirects user to the different
+     * pages, dependent on required parameters
+     * (For admin only)
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");

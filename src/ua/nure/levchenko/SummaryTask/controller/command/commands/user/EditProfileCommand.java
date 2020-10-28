@@ -64,7 +64,7 @@ public class EditProfileCommand implements Command {
                 // validating changed fields
                 UserWebValidator userWebValidator = new UserWebValidator();
                 boolean isUserValid = userWebValidator.validateUserOnUpdate(oldLogin,
-                        oldPassword, newUser, currentUser, request);
+                        oldPassword, newUser, currentUser, request, resourceBundle);
                 if (isUserValid) {
                     UserService userService = new UserService();
                     User dbUser = null;

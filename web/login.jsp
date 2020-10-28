@@ -28,8 +28,8 @@ transform: translate(-50%, -50%)">
             </tr>
             <tr>
                 <td colspan="2" align="right">
-                    <button name="action" value="loginButton" class="btn-primary"><fmt:message
-                            key="login_jsp.btn.login"/></button>
+                    <button name="action" value="loginButton" class="btn-primary">
+                        <fmt:message key="login_jsp.btn.login"/></button>
                 </td>
             </tr>
             <tr>

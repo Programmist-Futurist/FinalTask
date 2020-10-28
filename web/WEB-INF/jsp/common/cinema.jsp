@@ -27,11 +27,14 @@
 <div style="margin-left: auto;
     margin-right: auto;
     width: 50em">
+    <c:if test="${sessionScope.films != null}">
+        <%@ include file="/WEB-INF/jspf/common/cinema/sort_films.jspf" %>
+    </c:if>
+
     <form action="/controller" method="get" style="text-align: center">
-        <c:if test="${requestScope.films != null}">
+        <c:if test="${sessionScope.films != null}">
             <input type="hidden" name="command" value="lookSchedule">
-            <%@ include file="/WEB-INF/jspf/common/cinema/sort.jspf" %>
-            <c:forEach items="${requestScope.films}" var="film">
+            <c:forEach items="${sessionScope.films}" var="film">
                 <div style="text-align: left; border: #0f0f0f 2px;">
                     <form action="/controller" method="get">
                         <input type="hidden" name="command" value="lookSchedule">
@@ -39,7 +42,7 @@
                         <input type="hidden" name="filmId" value="${film.id}">
                         <dd class="col-sm-1">
                             <button name="action" value="getFilmSchedule" class="btn btn-primary" style="width: 180px">
-                                Look schedule
+                                <fmt:message key="cinema_jsp.button.go_to_hall"/>
                             </button>
                         </dd>
                     </form>
@@ -48,7 +51,13 @@
             </c:forEach>
         </c:if>
 
-        <c:if test="${requestScope.filmSchedules != null}">
+        <c:if test="${sessionScope.filmSchedules != null}">
+            <form action="/controller" method="get">
+                <input type="hidden" name="command" value="sortSchedule">
+                <div style="text-align: right">
+                    <%@ include file="/WEB-INF/jspf/common/cinema/sort_schedules.jspf" %>
+                </div>
+            </form>
             <form action="/controller" method="get">
                 <input type="hidden" name="command" value="lookHall">
                 <div style="text-align: left">
@@ -59,15 +68,14 @@
 
 
         <c:if test="${sessionScope.places != null}">
-            <form action="/controller" method="get">
-                <input type="hidden" name="command" value="makeOrder">
-                <div style="text-align: left">
-                    <%@ include file="/WEB-INF/jspf/common/cinema/show_hall.jspf" %>
-                    <c:if test="${sessionScope.user != null}">
-                        <button name="action" value="makeOrder">Make order</button>
-                    </c:if>
-                </div>
-            </form>
+            <div style="text-align: left">
+                <%@ include file="/WEB-INF/jspf/common/cinema/show_hall.jspf" %>
+                <form action="/controller" method="get">
+                    <input type="hidden" name="command" value="makeOrder">
+                    <button name="action" onclick="return confirmBox()" value="makeOrder">
+                        <fmt:message key="cinema_jsp.button.make_order"/></button>
+                </form>
+            </div>
         </c:if>
     </form>
 </div>

@@ -65,6 +65,7 @@ public class CommandAccessFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
         String commandName = request.getParameter(Parameters.COMMAND);
+        LOG.trace("Command: " + commandName);
         if (commandName == null || commandName.isEmpty()) {
             message = RESOURCE_BUNDLE.getString("filter.empty_command_exception");
             forward = Path.PAGE_ERROR_PAGE;
@@ -94,9 +95,7 @@ public class CommandAccessFilter implements Filter {
             if (common.contains(commandName)) {
                 return true;
             }
-//            if (Role.ADMIN.getIntKey() == currentRoleId && adminCommands.contains(commandName)) {
-//                return true;
-//            }
+
             message = RESOURCE_BUNDLE.getString("filter.unknown_command_exception");
             forward = Path.PAGE_ERROR_PAGE;
         } else {

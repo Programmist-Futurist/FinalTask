@@ -3,13 +3,11 @@
 
 
 <html>
-
+<c:set var="title" value="Manage films"/>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
 <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
-<head>
-    <title>Create film</title>
-    <%--    <%@ include file="/WEB-INF/jspf/admin/films/add/style/film_form_style.jspf" %>--%>
-</head>
+
 <body>
 <form action="/controller" method="post">
     <div>

@@ -11,12 +11,27 @@ import ua.nure.levchenko.SummaryTask.model.services.FilmService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Command that redirects you to the cinema page
+ *
+ * @author K.Levchenko
+ */
 public class CinemaCommand implements Command {
     private static final Logger LOG = Logger.getLogger(CinemaCommand.class);
 
+    /**
+     * Command redirects you to the cinema page
+     * and setting needed arguments to the needed scopes
+     * before going to the page
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException if some unexpected error occurred
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");
@@ -28,15 +43,18 @@ public class CinemaCommand implements Command {
         // setting attribute currentHallPlaces
         session.setAttribute(Attributes.PLACES, null);
         // setting attribute placesToOrder
-        List<Integer> placesToOrder = new ArrayList<>();
         session.setAttribute(Attributes.PLACES_TO_ORDER, null);
+        // setting attribute filmsSchedule
+        session.setAttribute(Attributes.FILM_SCHEDULES, null);
+        // setting attribute filmsSchedule
+        session.setAttribute(Attributes.FILM_SCHEDULE_FREE_PLACES, null);
 
         FilmService filmService = new FilmService();
         // getting all schedules from DB
         List<Film> films = filmService.getAllFull();
         LOG.trace("Request parameter set: films --> " + films.toString());
         // setting attribute filmsSchedule in application scope
-        request.setAttribute(Attributes.FILMS, films);
+        session.setAttribute(Attributes.FILMS, films);
 
         LOG.debug("Command ends");
         return Path.PAGE_CINEMA;

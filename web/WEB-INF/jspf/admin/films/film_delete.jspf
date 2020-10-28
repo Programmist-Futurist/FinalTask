@@ -2,7 +2,7 @@
 
 <form action="/controller" method="post" style="text-align: center">
     <input type="hidden" name="command" value="deleteFilm">
-    Choose film to delete:
+    <fmt:message key="film_delete.text.choose_film_to_delete"/>
     <select name="filmIdGet">
         <c:forEach items="${applicationScope.films}" var="film">
             <c:if test="${sessionScope.user.language.toString().equals('RU')}">
@@ -13,13 +13,15 @@
             </c:if>
         </c:forEach>
     </select>
-    <button name="action" value="getFilmToDelete" class="btn-primary">Choose</button>
+    <button name="action" value="getFilmToDelete" class="btn-primary"><fmt:message
+            key="film_delete.button.choose"/></button>
 
     <c:if test="${requestScope.film != null}">
         <c:set var="film" value="${requestScope.film}"/>
         <%@ include file="/WEB-INF/jspf/common/cinema/show_film.jspf" %>
         <input type="hidden" name="filmIdDelete" value="${requestScope.film.id}">
-        <button name="action" value="deleteFilmConfirm">Delete</button>
+        <button name="action" value="deleteFilmConfirm"><fmt:message
+                key="film_delete.button.delete"/></button>
     </c:if>
 
 </form>

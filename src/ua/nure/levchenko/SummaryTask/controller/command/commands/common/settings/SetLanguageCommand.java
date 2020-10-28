@@ -20,6 +20,16 @@ import javax.servlet.http.HttpSession;
 public class SetLanguageCommand implements Command {
     private static final Logger LOG = Logger.getLogger(SetLanguageCommand.class);
 
+
+    /**
+     * Main method of the setting
+     * needed language command
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException if some unexpected error occurred
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");

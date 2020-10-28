@@ -42,4 +42,18 @@ public class Parameters {
     public static final String PLACE_ID = "placeId";
     public static final String FILM_ID = "filmId";
 
+    // profile.jsp
+    public static final String RESERVATION_ID = "reservationId";
+
+    // sorting
+    public static final String SORT_NAME_TYPE = "sortNameType";
+    public static final String SORT_TIME_TYPE = "sortTimeType";
+    public static final String SORT_FREE_PLACES_TYPE = "sortFreePlacesType";
+    public static final String SORT_NAME = "sortName";
+    public static final String SORT_TIME = "sortTime";
+    public static final String SORT_FREE_PLACES = "sortFreePlaces";
+    public static final String DATE = "date";
+    public static final String IS_DATE = "isDate";
+
+
 }

@@ -7,9 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
+<c:set var="title" value="Manage schedules"/>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
 <body>
 
 </body>

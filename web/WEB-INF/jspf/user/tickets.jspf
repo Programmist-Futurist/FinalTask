@@ -1,0 +1,55 @@
+<%----%>
+
+<c:if test="${requestScope.userTickets != null
+&& requestScope.userTickets.size() != 0}">
+    <div style="text-align: center;
+        margin-left: auto;
+    margin-right: auto;
+    width: 70em">
+        <h4>Your orders</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"><fmt:message key="tickets.column_name.film"/></th>
+                <th scope="col"><fmt:message key="tickets.column_name.date"/></th>
+                <th scope="col"><fmt:message key="tickets.column_name.time"/></th>
+                <th scope="col"><fmt:message key="tickets.column_name.hall"/></th>
+                <th scope="col"><fmt:message key="tickets.column_name.place_num"/></th>
+                <th scope="col"><fmt:message key="tickets.column_name.button"/></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.userTickets}" var="reservation">
+                <form action="/controller" method="get">
+                    <input type="hidden" name="command" value="ticketsManage">
+                    <input type="hidden" name="scheduleId" value="${reservation.id}">
+                    <tr>
+                        <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+                            <td>${reservation.scheduleEntity.film.name.rus}</td>
+                        </c:if>
+                        <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                            <td>${reservation.scheduleEntity.film.name.eng}</td>
+                        </c:if>
+                        <td><fmt:formatDate value="${reservation.scheduleEntity.timeStart}"
+                                            pattern="dd-MM-yyyy"/></td>
+                        <td><fmt:formatDate value="${reservation.scheduleEntity.timeStart}"
+                                            pattern="HH:mm"/></td>
+                        <c:if test="${sessionScope.user.language.toString().equals('RU')}">
+                            <td>${reservation.scheduleEntity.hall.name.rus}</td>
+                        </c:if>
+                        <c:if test="${sessionScope.user.language.toString().equals('ENG')}">
+                            <td>${reservation.scheduleEntity.hall.name.eng}</td>
+                        </c:if>
+                        <td>${reservation.placeNumber}</td>
+                        <td>
+                            <button name="reservationId" onclick="return confirmBox()" value="${reservation.id}"
+                                    class="btn-primary"><fmt:message key="tickets.button.delete"/>
+                            </button>
+                        </td>
+                    </tr>
+                </form>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</c:if>

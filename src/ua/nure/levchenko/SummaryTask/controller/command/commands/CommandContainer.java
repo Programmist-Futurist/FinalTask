@@ -11,15 +11,16 @@ import ua.nure.levchenko.SummaryTask.controller.command.commands.common.authoriz
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.authorization.SignUpCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.CinemaCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.authorized.MakeOrderCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.unauthorized.BookPlaceCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.unauthorized.LookHallCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.unauthorized.LookScheduleCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.unauthorized.SortFilmsCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.common.BookPlaceCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.common.LookHallCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.common.LookScheduleCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.common.sort.SortFilmsCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.common.cinema.common.sort.SortScheduleCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.settings.LanguageSettingsCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.settings.SetLanguageCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.user.EditProfileCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.user.ProfileCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.user.ReservePlaceCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.user.TicketsManageCommand;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,7 +28,7 @@ import java.util.TreeMap;
 /**
  * Holder for all commands.<br/>
  *
- * @author D.Kolesnikov
+ * @author K.Levchenko
  */
 public class CommandContainer {
 
@@ -50,12 +51,13 @@ public class CommandContainer {
         commands.put("makeOrder", new MakeOrderCommand());
         commands.put("bookPlace", new BookPlaceCommand());
         commands.put("sortFilms", new SortFilmsCommand());
+        commands.put("sortSchedule", new SortScheduleCommand());
 
 
         // user
         commands.put("editProfile", new EditProfileCommand());
         commands.put("profile", new ProfileCommand());
-        commands.put("reservePlace", new ReservePlaceCommand());
+        commands.put("ticketsManage", new TicketsManageCommand());
 
 
         // admin

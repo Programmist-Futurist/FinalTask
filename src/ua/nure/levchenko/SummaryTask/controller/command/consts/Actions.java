@@ -31,8 +31,13 @@ public class Actions {
 
     // cinema.jsp
     public static String GET_FILM = "getFilm";
-    public static String BOOK_PLACE = "bookPlace";
     public static String GET_FILM_SCHEDULE = "getFilmSchedule";
     public static String MAKE_ORDER = "makeOrder";
+
+
+    // sorting
+    public static final String SORT_SCHEDULE_PLACES = "sortSchedulePlaces";
+    public static final String SORT_SCHEDULE_TIME = "sortScheduleTime";
+    public static final String SORT_FILMS = "sortFilm";
 
 }

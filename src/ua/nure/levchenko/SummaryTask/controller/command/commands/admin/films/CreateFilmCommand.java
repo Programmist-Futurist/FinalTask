@@ -13,6 +13,7 @@ import ua.nure.levchenko.SummaryTask.model.entity.db.Dictionary;
 import ua.nure.levchenko.SummaryTask.model.entity.db.Film;
 import ua.nure.levchenko.SummaryTask.model.entity.db.User;
 import ua.nure.levchenko.SummaryTask.model.services.FilmService;
+import ua.nure.levchenko.SummaryTask.model.utils.language.LanguageDefiner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,13 +27,39 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.List;
 import java.util.Random;
+import java.util.ResourceBundle;
 
+/**
+ * Command to create film entity in db
+ * (For admin only)
+ *
+ * @author K.Levchenko
+ */
 public class CreateFilmCommand implements Command {
     private static final Logger LOG = Logger.getLogger(DeleteFilmCommand.class);
 
+    /**
+     * This method validates all fields before
+     * creating film in DB, and also creates it if
+     * everything is ok, and returns error message if
+     * smth goes wrong
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws AppException
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         LOG.debug("Command starts");
+
+        // getting session
+        HttpSession session = request.getSession();
+        //getting user from session
+        User user = (User) session.getAttribute(Attributes.USER);
+        // define currentLang
+        LanguageDefiner languageDefiner = new LanguageDefiner();
+        ResourceBundle resourceBundle = languageDefiner.getBundle(user);
 
         // getting action parameter from the request
         String action = request.getParameter(Parameters.ACTION);
@@ -58,12 +85,13 @@ public class CreateFilmCommand implements Command {
                         descriptionRu, descriptionEng, null);
                 // validating film
                 FilmWebValidator filmWebValidator = new FilmWebValidator();
-                boolean isFilmValid = filmWebValidator.validateFilmOnCreate(film, request);
+                boolean isFilmValid = filmWebValidator.validateFilmOnCreate(film, request, resourceBundle);
                 if (isFilmValid) {
                     // update film in DB
                     filmService.create(film);
                     // setting request attributes
-                    request.setAttribute(Attributes.INFO_MESSAGE, "Film successfully created.");
+                    request.setAttribute(Attributes.INFO_MESSAGE,
+                            resourceBundle.getString("create_film_command.film_created"));
                     // setting appScope attribute "films"
                     List<Film> films = filmService.getAllFull();
                     // setting films to application scope
@@ -72,7 +100,8 @@ public class CreateFilmCommand implements Command {
             }
         } catch (ServiceException | IOException e) {
             LOG.error("Can not create film in DB!");
-            throw new AppException("Unexpected DB error occurred", e);
+            throw new AppException(resourceBundle.
+                    getString("sign_up_command.user_with_such_login_has_already_exist"), e);
         }
         request.setAttribute(Attributes.FILM_ACTIONS, 1);
         LOG.debug("Command finishes");
