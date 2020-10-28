@@ -27,6 +27,12 @@ public class Attributes {
     // profile.jsp
     public static final String USER_TICKETS = "userTickets";
 
+    // attendance.jsp
+    public static final String USERS_DAY = "amountOfPeopleDay";
+    public static final String USERS_WEEK = "amountOfPeopleWeek";
+    public static final String USERS_MONTH = "amountOfPeopleMonth";
+
+
 
 
 

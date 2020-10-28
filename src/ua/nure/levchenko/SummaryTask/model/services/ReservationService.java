@@ -10,6 +10,8 @@ import ua.nure.levchenko.SummaryTask.model.entity.db.ScheduleEntity;
 import ua.nure.levchenko.SummaryTask.model.entity.db.User;
 import ua.nure.levchenko.SummaryTask.model.validators.ReservationValidator;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -274,6 +276,103 @@ public class ReservationService implements Service<Reservation, Integer> {
                 reservation.setUser(user);
             }
             return reservations;
+        } catch (DBException e) {
+            LOG.error(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+            throw new DBException(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+        }
+    }
+
+
+    /**
+     * Reads all Reservation entities from DataBase
+     * made during 1 day
+     * Method have the same main function as in the Dao,
+     * but it is available to be expanded with additional functionality.
+     *
+     * @throws ServiceException
+     */
+    public List<Reservation> getAllDay() throws ServiceException {
+        LOG.debug("Service getAll starts");
+        try {
+            ReservationDao reservationDao = new ReservationDao();
+            ScheduleService scheduleService = new ScheduleService();
+
+            List<Reservation> reservations = reservationDao.getAll();
+            List<Reservation> result = new ArrayList<>();
+            for (Reservation reservation : reservations) {
+                // get Schedule entities
+                ScheduleEntity scheduleEntity = scheduleService.read(reservation.getScheduleId());
+                Date dayDate = new Date(new Date().getTime() - 86_400_000);
+                if (scheduleEntity.getTimeStart().after(dayDate)) {
+                    result.add(reservation);
+                }
+            }
+
+            return result;
+        } catch (DBException e) {
+            LOG.error(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+            throw new DBException(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+        }
+    }
+
+
+    /**
+     * Reads all Reservation entities from DataBase
+     * made during 1 day
+     * Method have the same main function as in the Dao,
+     * but it is available to be expanded with additional functionality.
+     *
+     * @throws ServiceException
+     */
+    public List<Reservation> getAllWeek() throws ServiceException {
+        LOG.debug("Service getAll starts");
+        try {
+            ReservationDao reservationDao = new ReservationDao();
+            ScheduleService scheduleService = new ScheduleService();
+
+            List<Reservation> reservations = reservationDao.getAll();
+            List<Reservation> result = new ArrayList<>();
+            for (Reservation reservation : reservations) {
+                // get Schedule entities
+                ScheduleEntity scheduleEntity = scheduleService.read(reservation.getScheduleId());
+                Date weekDate = new Date(new Date().getTime() - 604_800_000);
+                if (scheduleEntity.getTimeStart().after(weekDate)) {
+                    result.add(reservation);
+                }
+            }
+            return result;
+        } catch (DBException e) {
+            LOG.error(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+            throw new DBException(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
+        }
+    }
+
+
+    /**
+     * Reads all Reservation entities from DataBase
+     * made during 1 day
+     * Method have the same main function as in the Dao,
+     * but it is available to be expanded with additional functionality.
+     *
+     * @throws ServiceException
+     */
+    public List<Reservation> getAllMonth() throws ServiceException {
+        LOG.debug("Service getAll starts");
+        try {
+            ReservationDao reservationDao = new ReservationDao();
+            ScheduleService scheduleService = new ScheduleService();
+
+            List<Reservation> reservations = reservationDao.getAll();
+            List<Reservation> result = new ArrayList<>();
+            for (Reservation reservation : reservations) {
+                // get Schedule entities
+                ScheduleEntity scheduleEntity = scheduleService.read(reservation.getScheduleId());
+                Date monthDate = new Date(new Date().getTime() - 2_419_200_000L);
+                if (scheduleEntity.getTimeStart().after(monthDate)) {
+                    result.add(reservation);
+                }
+            }
+            return result;
         } catch (DBException e) {
             LOG.error(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);
             throw new DBException(Messages.ERR_CANNOT_GET_ALL_FILM_SERVICE, e);

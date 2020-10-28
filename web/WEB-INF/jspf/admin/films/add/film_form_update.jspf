@@ -14,6 +14,8 @@
     <div>
         <a>Description of film</a>
     </div>
-    <textarea id="filmDescriptionRu" name="filmDescriptionRu">${requestScope.film.description.rus}</textarea>
-    <textarea id="filmDescriptionEn" name="filmDescriptionEng">${requestScope.film.description.eng}</textarea>
+    <textarea style="width: 300px; height: 100px;" id="filmDescriptionRu"
+              name="filmDescriptionRu">${requestScope.film.description.rus}</textarea>
+    <textarea style="width: 300px; height: 100px;" id="filmDescriptionEn"
+              name="filmDescriptionEng">${requestScope.film.description.eng}</textarea>
 </div>

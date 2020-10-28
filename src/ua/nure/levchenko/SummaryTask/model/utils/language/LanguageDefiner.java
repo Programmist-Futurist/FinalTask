@@ -9,15 +9,21 @@ import java.util.ResourceBundle;
 public class LanguageDefiner {
 
     public ResourceBundle getBundle(User user) {
-        if (user != null && user.getLanguage() != null) {
-            if (user.getLanguage().equals(Language.ENG)) {
+        Language language = user.getLanguage();
+
+        if (language != null) {
+            System.out.println("lang != null");
+            if (language.equals(Language.ENG)) {
+                System.out.println("lang == ENG1");
                 return ResourceBundle.getBundle
                         ("resources", new Locale("en", "US"));
-            } else if (user.getLanguage().equals(Language.RU)) {
+            } else if (language.equals(Language.RU)) {
+                System.out.println("lang == ENG2");
                 return ResourceBundle.getBundle
                         ("resources", new Locale("ru", "RU"));
             }
         } else {
+            System.out.println("lang == ENG2");
             return ResourceBundle.getBundle
                     ("resources", new Locale("en", "US"));
         }

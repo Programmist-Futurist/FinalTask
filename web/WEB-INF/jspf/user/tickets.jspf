@@ -6,7 +6,7 @@
         margin-left: auto;
     margin-right: auto;
     width: 70em">
-        <h4>Your orders</h4>
+        <h4><fmt:message key="tickets.table_name"/></h4>
         <table class="table">
             <thead>
             <tr>
@@ -15,7 +15,7 @@
                 <th scope="col"><fmt:message key="tickets.column_name.time"/></th>
                 <th scope="col"><fmt:message key="tickets.column_name.hall"/></th>
                 <th scope="col"><fmt:message key="tickets.column_name.place_num"/></th>
-                <th scope="col"><fmt:message key="tickets.column_name.button"/></th>
+                <th scope="col"><fmt:message key="tickets.button.delete"/></th>
             </tr>
             </thead>
             <tbody>

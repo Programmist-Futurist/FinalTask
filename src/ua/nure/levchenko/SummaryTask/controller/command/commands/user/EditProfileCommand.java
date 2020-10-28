@@ -37,7 +37,9 @@ public class EditProfileCommand implements Command {
         User currentUser = userFromSession.clone();
         // defining language
         LanguageDefiner languageDefiner = new LanguageDefiner();
-        ResourceBundle resourceBundle = languageDefiner.getBundle(currentUser);
+        ResourceBundle resourceBundle = languageDefiner.getBundle(userFromSession);
+
+        System.out.println(userFromSession);
 
         String forward = Path.PAGE_SETTINGS;
         try {
@@ -80,10 +82,12 @@ public class EditProfileCommand implements Command {
                         // updating session attribute
                         session.setAttribute(Attributes.USER, newUser);
                         // setting request attribute
-                        request.setAttribute(Attributes.INFO_MESSAGE, "Information updated successfully");
+                        request.setAttribute(Attributes.INFO_MESSAGE,
+                                resourceBundle.getString("edit_profile_command.info_message.success_update"));
                     } else {
                         // setting request attribute
-                        request.setAttribute(Attributes.ERROR_MESSAGE, "User with such login has already exist");
+                        request.setAttribute(Attributes.ERROR_MESSAGE,
+                                resourceBundle.getString("edit_profile_command.error_message.suc_user_exists"));
                     }
                 }
             }

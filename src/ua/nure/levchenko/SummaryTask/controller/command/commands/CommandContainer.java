@@ -5,7 +5,7 @@ import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.films.Cre
 import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.films.DeleteFilmCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.films.EditFilmCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.films.RedirectManageFilmsCommand;
-import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.schedule.ManageScheduleCommand;
+import ua.nure.levchenko.SummaryTask.controller.command.commands.admin.schedule.ShowAttendanceCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.authorization.LoginCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.authorization.LogoutCommand;
 import ua.nure.levchenko.SummaryTask.controller.command.commands.common.authorization.SignUpCommand;
@@ -65,7 +65,7 @@ public class CommandContainer {
         commands.put("editFilm", new EditFilmCommand());
         commands.put("deleteFilm", new DeleteFilmCommand());
         commands.put("redirectFilms", new RedirectManageFilmsCommand());
-        commands.put("manageSchedule", new ManageScheduleCommand());
+        commands.put("attendance", new ShowAttendanceCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());

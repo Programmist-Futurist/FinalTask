@@ -2,17 +2,17 @@
     <p><fmt:message
             key="edit_profile.text.login"/></p>
     <input type="text" name="oldLogin"
-           placeholder="<fmt:message key="edit_profile.placeholder.old_login">"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.old_login"/>"/>
     <input type="text" name="newLogin"
-           placeholder="<fmt:message key="edit_profile.placeholder.new_login">"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.new_login"/>"/>
     <hr/>
 
     <p><fmt:message
             key="edit_profile.text.password"/></p>
     <input type="password" name="oldPassword"
-           placeholder="<fmt:message key="edit_profile.placeholder.old_password">"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.old_password"/>"/>
     <input type="password" name="newPassword"
-           placeholder="<fmt:message key="edit_profile.placeholder.new_password">"/>
+           placeholder="<fmt:message key="edit_profile.placeholder.new_password"/>"/>
     <hr/>
 
     <p><fmt:message
@@ -32,7 +32,7 @@
     <hr/>
 
     <div class="window-button">
-        <button name="action" value="editProfileConfirm" class="btn-primary"><fmt:message
+        <button name="action" onclick="return confirmBox()" value="editProfileConfirm" class="btn-primary"><fmt:message
                 key="edit_profile.button.edit"/></button>
         <br/>
     </div>

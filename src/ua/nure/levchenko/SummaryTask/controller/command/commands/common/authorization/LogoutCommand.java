@@ -49,16 +49,14 @@ public class LogoutCommand implements Command {
         UserService userService = new UserService();
 
         try {
-            if (session != null) {
-                // getting current user
-                user.setLogged(false);
-                user.setLanguage(Language.ENG);
-                userService.update(user);
-                //setting default locale
-                Locale.getDefault();
-                // deletes current user from session container and session
-                session.invalidate();
-            }
+            // getting current user
+            user.setLogged(false);
+            user.setLanguage(Language.ENG);
+            userService.update(user);
+            //setting default locale
+            Locale.getDefault();
+            // deletes current user from session container and session
+            session.invalidate();
         } catch (ServiceException e) {
             LOG.trace("Unexpected internal error.");
             throw new AppException(resourceBundle.getString("unknown_internal_error"), e);

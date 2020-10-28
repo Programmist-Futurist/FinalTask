@@ -18,6 +18,7 @@ public class Path {
 
     // admin
     public static final String PAGE_MANAGE_FILM = "/WEB-INF/jsp/admin/films/manage_film.jsp";
+    public static final String PAGE_ATTENDANCE = "/WEB-INF/jsp/admin/films/attendance.jsp";
 
     // user
     public static final String PROFILE_PAGE = "/WEB-INF/jsp/user/profile.jsp";

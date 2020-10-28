@@ -76,10 +76,10 @@ public class SortScheduleCommand implements Command {
             }
         } else if (Actions.SORT_SCHEDULE_PLACES.equals(action)) {
             // creating Map<freePlacesAmount, ScheduleEntity>
-            Map<Integer, ScheduleEntity> schedulesMap = new HashMap<>();
+            Map<ScheduleEntity, Integer> schedulesMap = new HashMap<>();
             for (ScheduleEntity scheduleEntity : filmSchedules) {
                 int amountOfFreePlaces = filmFreePlaces.get(scheduleEntity.getId());
-                schedulesMap.put(amountOfFreePlaces, scheduleEntity);
+                schedulesMap.put(scheduleEntity, amountOfFreePlaces);
             }
             // getting parameter from request
             String sortFreePlacesType = request.getParameter(Parameters.SORT_FREE_PLACES_TYPE);
@@ -147,13 +147,13 @@ public class SortScheduleCommand implements Command {
      * @param filmScheduleMap list of schedule entities of some film
      * @return sorted list of needed film schedule names
      */
-    private List<ScheduleEntity> sortByFreePlacesAmountMinMax(Map<Integer, ScheduleEntity> filmScheduleMap) {
+    private List<ScheduleEntity> sortByFreePlacesAmountMinMax(Map<ScheduleEntity, Integer> filmScheduleMap) {
         List<ScheduleEntity> result = new ArrayList<>();
-        Stream<Map.Entry<Integer, ScheduleEntity>> st = filmScheduleMap.entrySet().stream();
+        Stream<Map.Entry<ScheduleEntity, Integer>> st = filmScheduleMap.entrySet().stream();
 
         // sorting
-        st.sorted(Comparator.comparingInt(Map.Entry::getKey))
-                .forEach(o -> result.add(o.getValue()));
+        st.sorted(Comparator.comparingInt(Map.Entry::getValue))
+                .forEach(o -> result.add(o.getKey()));
 
         return result;
     }
@@ -167,13 +167,13 @@ public class SortScheduleCommand implements Command {
      * @param filmScheduleMap list of schedule entities of some film
      * @return sorted list of needed film schedule names
      */
-    private List<ScheduleEntity> sortByFreePlacesAmountMaxMin(Map<Integer, ScheduleEntity> filmScheduleMap) {
+    private List<ScheduleEntity> sortByFreePlacesAmountMaxMin(Map<ScheduleEntity, Integer> filmScheduleMap) {
         List<ScheduleEntity> result = new ArrayList<>();
-        Stream<Map.Entry<Integer, ScheduleEntity>> st = filmScheduleMap.entrySet().stream();
+        Stream<Map.Entry<ScheduleEntity, Integer>> st = filmScheduleMap.entrySet().stream();
 
         // sorting
-        st.sorted((o1, o2) -> o2.getKey().compareTo(o1.getKey()))
-                .forEach(o -> result.add(o.getValue()));
+        st.sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                .forEach(o -> result.add(o.getKey()));
 
         return result;
     }

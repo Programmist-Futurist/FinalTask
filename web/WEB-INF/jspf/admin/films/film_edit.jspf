@@ -22,7 +22,7 @@
             <input type="hidden" name="command" value="editFilm">
             <%@ include file="/WEB-INF/jspf/admin/films/add/film_form_update.jspf" %>
             <input type="hidden" name="filmIdEdit" value="${requestScope.film.id}">
-            <button name="action" value="editFilmConfirm"><fmt:message
+            <button name="action" onclick="return confirmBox()" value="editFilmConfirm"><fmt:message
                     key="film_edit.text.update"/></button>
         </form>
     </c:if>

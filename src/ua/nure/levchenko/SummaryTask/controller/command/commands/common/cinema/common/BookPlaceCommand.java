@@ -54,7 +54,7 @@ public class BookPlaceCommand implements Command {
         if (placeId != 0) {
             // updating order places
             if (placesToOrder.contains(placeId)
-                    && !places.get(placeId)) {
+                    && places.get(placeId)) {
                 boolean b = placesToOrder.remove(new Integer(placeId));
                 places.put(placeId, true);
             } else {

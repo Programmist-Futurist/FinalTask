@@ -20,7 +20,7 @@
         <c:set var="film" value="${requestScope.film}"/>
         <%@ include file="/WEB-INF/jspf/common/cinema/show_film.jspf" %>
         <input type="hidden" name="filmIdDelete" value="${requestScope.film.id}">
-        <button name="action" value="deleteFilmConfirm"><fmt:message
+        <button name="action" onclick="return confirmBox()" value="deleteFilmConfirm"><fmt:message
                 key="film_delete.button.delete"/></button>
     </c:if>
 

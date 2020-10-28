@@ -4,8 +4,8 @@
     <input type="hidden" name="command" value="sortFilms">
     <a><fmt:message key="sort_films.text.sort_by_time"/></a>
     <select name="sortNameType">
-        <option value="a-z">sort a-z</option>
-        <option value="z-a">sort z-a</option>
+        <option value="a-z"><fmt:message key="cinema.sort_films.a_z"/></option>
+        <option value="z-a"><fmt:message key="cinema.sort_films.z_a"/></option>
     </select>
     <button name="action" value="sortFilm">
         <fmt:message key="sort_films.button.sort"/></button>

@@ -1,6 +1,6 @@
 <script>
     function confirmBox() {
-        if (confirm("Are you sure?")) {
+        if (confirm(<fmt:message key="confirm_box.text_on_action_confirm"/>)) {
         } else {
             return false;
         }

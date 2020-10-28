@@ -44,7 +44,7 @@
         <init-param>
             <param-name>admin</param-name>
             <param-value>
-                createFilm editFilm deleteFilm redirectFilms
+                createFilm editFilm deleteFilm redirectFilms attendance
             </param-value>
         </init-param>
         <init-param>
